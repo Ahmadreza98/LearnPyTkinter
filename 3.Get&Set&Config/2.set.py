@@ -11,15 +11,10 @@ def build_app():
     # set window size
     window.geometry("400x300")
     # define widgets
-    lbl = ttk.Label(window, text="Hello, Tkinter!")
-    lbl.pack(pady=20)
-    
-    eny = ttk.Entry(window, width=30)
-    eny.pack(pady=20)
-    
-    btn = ttk.Button(window, text="Click Me", command=lambda: print(f"Hello, {eny.get()}!"))
-    btn.pack(pady=20)
-    
+    var = tk.StringVar()
+    entry = ttk.Entry(window, textvariable=var)
+    entry.pack(pady=20)
+    var.set("John Doe")  # Sets the entry value
     # run app
     window.mainloop()
 

@@ -10,6 +10,13 @@ def build_app():
     window.title("Tkinter App")
     # set window size
     window.geometry("400x300")
+    # define widgets
+    eny = ttk.Entry(window, width=30)
+    eny.pack(pady=20)
+    
+    btn = ttk.Button(window, text="Click Me", command=lambda: print(f"Hello, {eny.get()}!"))
+    btn.pack(pady=20)
+    
     # run app
     window.mainloop()
 
