@@ -22,9 +22,6 @@ def build_app():
     icon = tk.PhotoImage(file="./ico.png")
     window.iconphoto(False,icon)
     
-    # set lift
-    window.lift()
-    
     # run app
     window.mainloop()
 

@@ -154,7 +154,6 @@ root.focus_force()
 
 ## 🧼 Summary
 
-
 | Task            | Method                                     |
 | --------------- | ------------------------------------------ |
 | Main window     | `tk.Tk()`                                |
@@ -168,3 +167,149 @@ root.focus_force()
 | Closing handler | `.protocol("WM_DELETE_WINDOW", handler)` |
 | Message boxes   | `messagebox.showinfo()`etc.              |
 | File dialog     | `filedialog.askopenfilename()`           |
+
+---
+
+## 🧱 `window.attributes()` in Tkinter
+
+The `.attributes()` method is used to  **get or set advanced properties of a window** , such as:
+
+| Attribute             | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| `-fullscreen`       | Makes window fill the entire screen                       |
+| `-topmost`          | Keeps window always on top                                |
+| `-alpha`            | Sets transparency (0.0 = fully transparent, 1.0 = opaque) |
+| `-toolwindow`       | Hides from taskbar (Windows only)                         |
+| `-disabled`         | Disables the window (Windows only)                        |
+| `-transparentcolor` | Makes a specific color fully transparent (Windows only)   |
+
+---
+
+## 🔹 Syntax
+
+```python
+# Set attribute
+root.attributes("-topmost", True)
+
+# Get attribute value
+is_topmost = root.attributes("-topmost")
+```
+
+---
+
+## ✅ Fullscreen Mode
+
+```python
+root.attributes("-fullscreen", True)
+```
+
+* Escape fullscreen:
+
+```python
+root.attributes("-fullscreen", False)
+```
+
+🔁 You can toggle it using a keyboard event:
+
+```python
+def toggle_fullscreen(event=None):
+    current = root.attributes("-fullscreen")
+    root.attributes("-fullscreen", not current)
+
+root.bind("<F11>", toggle_fullscreen)
+```
+
+---
+
+## ✅ Always-On-Top Window
+
+```python
+root.attributes("-topmost", True)   # Window always stays above others
+```
+
+---
+
+## ✅ Window Transparency (`-alpha`)
+
+Set window opacity between `0.0` (fully transparent) and `1.0` (fully opaque):
+
+```python
+root.attributes("-alpha", 0.7)
+```
+
+💡 Great for splash screens or overlays.
+
+---
+
+## ✅ Hide from Taskbar (Windows Only)
+
+```python
+root.attributes("-toolwindow", True)
+```
+
+* Makes the window borderless and removes it from taskbar.
+* Often used for popup-like windows.
+
+---
+
+## ✅ Disable the Window (Windows Only)
+
+```python
+root.attributes("-disabled", True)
+```
+
+* The window becomes unclickable and unresponsive.
+* Enable again with:
+
+```python
+root.attributes("-disabled", False)
+```
+
+---
+
+## ✅ Transparent Background Color (Windows Only)
+
+This makes a **specific color** transparent:
+
+```python
+root.configure(bg="pink")
+root.attributes("-transparentcolor", "pink")
+```
+
+💡 Useful for overlay effects or shaped windows.
+
+---
+
+## 🧪 Full Example
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+root.geometry("400x200")
+root.title("Window Attributes")
+
+# Set attributes
+root.attributes("-topmost", True)
+root.attributes("-alpha", 0.85)
+root.attributes("-fullscreen", False)
+
+# Label
+label = tk.Label(root, text="This window is semi-transparent and always on top.", font=("Arial", 12))
+label.pack(pady=50)
+
+root.mainloop()
+```
+
+---
+
+## 🧼 Summary Table
+
+| Attribute             | Platform | Description                        |
+| --------------------- | -------- | ---------------------------------- |
+| `-fullscreen`       | All      | Fills screen                       |
+| `-topmost`          | All      | Keeps window above others          |
+| `-alpha`            | All      | Controls transparency              |
+| `-toolwindow`       | Windows  | Hides from taskbar, compact border |
+| `-disabled`         | Windows  | Disables interaction               |
+| `-transparentcolor` | Windows  | Makes a specific color transparent |
