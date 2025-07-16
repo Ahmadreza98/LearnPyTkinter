@@ -1,7 +1,4 @@
 # Learn Tkinter - Python GUI Programming
-
-Welcome to the **Learn Tkinter** repository! This project is focused on helping beginners understand how to build graphical user interfaces (GUIs) using Python's built-in `tkinter` library.
-
 ---
 
 ## 📌 What is Tkinter?
