@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-import pyshorteners
+from pyshorteners import Shortener
 
 class Short_link(tk.Tk):
     def __init__(self):
@@ -16,19 +16,14 @@ class Short_link(tk.Tk):
         self.frm = ttk.Frame(self)
         
         self.link_long_url = tk.StringVar()
-        self.lbl_long_url = ttk.Label(self.frm, text="Enter Long URL:",
-                                      font=("Arial", 14, "bold"))
-        self.eny_long_url = ttk.Entry(self.frm, width=50,
-                                      textvariable=self.link_long_url)
+        self.lbl_long_url = ttk.Label(self.frm, text="Enter Long URL:", font=("Arial", 14, "bold"))
+        self.eny_long_url = ttk.Entry(self.frm, width=50, textvariable=self.link_long_url)
         
         self.link_short_url = tk.StringVar()
-        self.lbl_short_url = ttk.Label(self.frm, text="Generate Short URL:",
-                                     font=("Arial", 14, "bold"))
-        self.eny_short_url = ttk.Entry(self.frm, width=50,
-                                       textvariable=self.link_short_url)
+        self.lbl_short_url = ttk.Label(self.frm, text="Generate Short URL:", font=("Arial", 14, "bold"))
+        self.eny_short_url = ttk.Entry(self.frm, width=50, textvariable=self.link_short_url)
         
-        self.btn = ttk.Button(self.frm, text="Generate!", width=50,
-                              command= self.shortern_link_generator)
+        self.btn = ttk.Button(self.frm, text="Generate!",width=50, command=self.shortern_link_generator)
     
     def set_layout(self):
         self.frm.pack(side="top", expand=True, fill="both")
@@ -42,7 +37,7 @@ class Short_link(tk.Tk):
         self.btn.pack(pady=10, side="bottom")
 
     def shortern_link_generator(self):
-        shortener = pyshorteners.Shortener()
+        shortener = Shortener()
         link_short = shortener.tinyurl.short(self.link_long_url.get())
         self.link_short_url.set(value=link_short)
 
